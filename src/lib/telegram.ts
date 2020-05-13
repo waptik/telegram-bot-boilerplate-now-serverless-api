@@ -14,7 +14,8 @@ export async function getWebhookCallback(bot) {
 	const botInfo = await bot.telegram.getMe();
 	bot.options.username = botInfo.username;
 	console.info('Server has initialized bot username.', botInfo.username);
-	return bot.webhookCallback('/');
+	return bot.webhookCallback
+('/' + process.env.BOT_TOKEN);
 }
 
 export function toArgs(ctx: TelegrafContext) {
