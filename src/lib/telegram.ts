@@ -24,7 +24,7 @@ export async function getWebhookCallback(bot) {
 export function launchBot(bot) {
 	
 
-	console.log('Server has initialized bot using launchBot() at %s and instance %s.', NOW_URL, bot);
+	console.log('Server has initialized bot using launchBot() at %s and instance %s.', NOW_URL, bot.telegram.getWebhookInfo());
 
 
 	return bot.launch({

@@ -5,7 +5,7 @@ import { about, greeting } from '../src';
  import {ok} from '../src/lib/responses';
 import {
 startBot,
-// getWebhookCallback,
+ getWebhookCallback,
 launchBot
 } from '../src/lib';
 
@@ -15,6 +15,8 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 
 
 const bot = new Telegraf(BOT_TOKEN);
+
+bot.use(Telegraf.log());
 
 bot.start((ctx) => {
   return ctx.reply('This bot helps channel/group owners monetize their communities through self advertisement');
@@ -33,7 +35,7 @@ if (!process.env.IS_NOW) {
 
 
 // main function
- export default function handle(req: NowRequest, res: NowResponse) {
+ export default async function handle(req: NowRequest, res: NowResponse) {
 
 	if (!req.body) {
 
@@ -45,8 +47,11 @@ if (!process.env.IS_NOW) {
 	console.log('Server has initialized bot with req.body ', req.body);
 
 		
-	 launchBot(bot);
-	return ok(res);
+	 
+   launchBot(bot);
+	
+	const handler = await getWebhookCallback(bot);
+	return handler(req, res);
 
 }
 
