@@ -8,7 +8,6 @@ import { about, greeting } from '../src';
 const debug = require('debug')('bot');
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
-const USERNAME = process.env.USERNAME || '';
 const PORT = (process.env.PORT && parseInt(process.env.PORT, 10));
 const WEBHOOK_URL = `${process.env.BOT_URL}/bot${BOT_TOKEN}`;
 
