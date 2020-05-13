@@ -31,14 +31,12 @@ if (!process.env.IS_NOW) {
 // main function
  export default async function handle(req: NowRequest, res: NowResponse) {
 
-	if (!req.method) return;
-	
-
-	if (req.method.toLowerCase()  !== 'post') {
+	if (!req.body) {
 
 		ok(res,'Nothing to see here...');
 		return;
-	}
+	};
+ 
 
 	console.log('Server has initialized bot with req.body ', req.body);
 
