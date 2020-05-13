@@ -9,9 +9,9 @@ const greeting = () => (ctx: any) => {
   debug('Triggered "greeting" text command');
 
   const messageId = ctx.message.message_id;
-  const userName = `${ctx.message.from.first_name} ${ctx.message.from.last_name}`;
+  const userName = `${ctx.from.first_name} ${ctx.from?.last_name} (${ctx.from.id})`;
 
-  replyToMessage(ctx, messageId, `Hello, ${userName}!`);
+  replyToMessage(ctx, messageId, `Hello, ${userName}! Msg(${messageId})`);
 };
 
 export { greeting };

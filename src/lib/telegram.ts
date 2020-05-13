@@ -10,7 +10,8 @@ async function init(bot) {
 	const botInfo = await bot.telegram.getMe(bot);
 	bot.options.username = botInfo.username;
 	console.info('Server has initialized bot username.', botInfo.username);
-	bot.startPolling();
+	  await bot.telegram.deleteWebhook();
+  bot.startPolling();
 }
 
 export async function getWebhookCallback(bot) {

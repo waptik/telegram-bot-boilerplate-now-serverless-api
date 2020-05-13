@@ -2,11 +2,11 @@ import {NowRequest, NowResponse} from '@now/node';
 import Telegraf from 'telegraf';
 
 import { about, greeting } from '../src';
- import {ok} from '../src/lib/responses';
+ //import {ok} from '../src/lib/responses';
 import {
 startBot,
- getWebhookCallback,
-launchBot
+// getWebhookCallback,
+//launchBot
 } from '../src/lib';
 
 
@@ -39,7 +39,7 @@ if (!process.env.IS_NOW) {
 
 	if (!req.body) {
 
-		ok(res,'Nothing to see here...');
+	//	ok(res,'Nothing to see here...');
 		return;
 	};
  
@@ -47,11 +47,7 @@ if (!process.env.IS_NOW) {
 	console.log('Server has initialized bot with req.body ', req.body);
 
 		
-	 
-   launchBot(bot);
-	
-	const handler = await getWebhookCallback(bot);
-	return handler(req, res);
+return​ ​bot​.​handleUpdate​(​req​.​body​,​ ​res​)​;​
 
 }
 
