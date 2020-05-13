@@ -1,0 +1,31 @@
+{
+  "name": "telegram-bot-boilerplate-now-serverless-api",
+  "version": "1.0.0",
+  "description": "Telegram Bot to test Telegram Bot Boilerplate",
+  "main": "src/index.js",
+  "author": "waptik",
+  "homepage": "https://github.com/waptik/telegram-bot-boilerplate-now-serverless-api.git",
+  "dependencies": {
+    "dotenv-cli": "^2.0.1",
+    "paystack-api": "^2.0",
+    "telegraf": "^3.38.0",
+    "telegraf-inline-menu": "^4.0.1"
+  },
+  "devDependencies": {
+    "@now/node": "^1.6.0",
+    "@sindresorhus/tsconfig": "^0.7.0",
+    "@types/node": "^13.1.4",
+    "@zeit/ncc": "^0.22.0",
+    "debug": "^4.1.1",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.8.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\" --onFailure \"echo Beep! Compilation Failed\" --compiler $(which tsc)",
+    "prettier": "prettier --single-quote --trailing-comma all --write 'src/**/*.ts'"
+  }
+}
