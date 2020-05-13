@@ -3,13 +3,12 @@ import Telegraf from 'telegraf';
 
 import { about, greeting } from '../src';
  import {ok} from '../src/lib/responses';
+import {startBot, getWebhookCallback} from '../src/lib';
 
 
-const debug = require('debug')('bot');
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
-const PORT = (process.env.PORT && parseInt(process.env.PORT, 10));
-const WEBHOOK_URL = `${process.env.BOT_URL}/bot${BOT_TOKEN}`;
+
 
 const bot = new Telegraf(BOT_TOKEN);
 
@@ -20,38 +19,32 @@ bot.start((ctx) => {
 bot.command('about', about())
 .on('text', greeting());
 
-const production = () => {
-  debug('Bot runs in production mode');
-  debug(`Bot setting webhook: ${WEBHOOK_URL}`);
-  bot.telegram.setWebhook(WEBHOOK_URL);
-  debug(`Bot starting webhook on port: ${PORT}`);
-  bot.startWebhook(`/bot${BOT_TOKEN}`, null, PORT);
-};
 
-const development = () => {
-  debug('Bot runs in development mode');
-  debug(`Bot deleting webhook`);
-  bot.telegram.deleteWebhook();
-  debug(`Bot starting polling`);
-  bot.startPolling();
-};
-
+// process.env.IS_NOW is undefined locally,
+if (!process.env.IS_NOW) {
+	startBot(bot).then(() => {
+		console.info('Started bot');
+	});
+  }
 
 
 // main function
- export default function handle(req: NowRequest, res: NowResponse) {
+ export default async function handle(req: NowRequest, res: NowResponse) {
 
-	if (req.body === undefined) {
-		res.send('Nothing to see here...');
+	if (!req.method) return;
+	
 
-	} else {
+	if (req.method.toLowerCase()  !== 'post') {
+
+		ok(res,'Nothing to see here...');
+		return;
+	}
 
 	console.log('Server has initialized bot with req.body ', req.body);
 
-		process.env.NODE_ENV === 'production' ? production() : development();
+		
+	const handler = await getWebhookCallback(bot);
+	return handler(req, res);
 
-  return ok(res);
-
-	}
 }
 
