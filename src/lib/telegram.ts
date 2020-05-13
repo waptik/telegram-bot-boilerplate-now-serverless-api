@@ -1,6 +1,9 @@
 import {Context as TelegrafContext, Extra} from 'telegraf';
 import {ExtraReplyMessage} from 'telegraf/typings/telegram-types';
 
+const NOW_URL = process.env.BOT_URL;
+
+const PORT = (process.env.PORT && parseInt(process.env.PORT, 10));
 
 
 async function init(bot) {
@@ -16,6 +19,20 @@ export async function getWebhookCallback(bot) {
 	console.info('Server has initialized bot username.', botInfo.username);
 	return bot.webhookCallback
 ('/' + process.env.BOT_TOKEN);
+}
+
+export function launchBot(bot) {
+	
+
+	console.log('Server has initialized bot using launchBot() at %s and instance %s.', NOW_URL, bot);
+
+
+	return bot.launch({
+			webhook: {
+						domain: NOW_URL,
+						port: PORT
+			}
+	});
 }
 
 export function toArgs(ctx: TelegrafContext) {

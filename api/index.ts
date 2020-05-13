@@ -3,7 +3,11 @@ import Telegraf from 'telegraf';
 
 import { about, greeting } from '../src';
  import {ok} from '../src/lib/responses';
-import {startBot, getWebhookCallback} from '../src/lib';
+import {
+startBot,
+// getWebhookCallback,
+launchBot
+} from '../src/lib';
 
 
 
@@ -29,7 +33,7 @@ if (!process.env.IS_NOW) {
 
 
 // main function
- export default async function handle(req: NowRequest, res: NowResponse) {
+ export default function handle(req: NowRequest, res: NowResponse) {
 
 	if (!req.body) {
 
@@ -41,8 +45,8 @@ if (!process.env.IS_NOW) {
 	console.log('Server has initialized bot with req.body ', req.body);
 
 		
-	const handler = await getWebhookCallback(bot);
-	return handler(req, res);
+	 launchBot(bot);
+	return ok(res);
 
 }
 
