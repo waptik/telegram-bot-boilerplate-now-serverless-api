@@ -1,29 +1,40 @@
-Telegram Bot Boilerplate
+Telegram Bot Boilerplate with Vercel's Serverless Functions [@VercelServerlessFunctionsBot](https://t.me/VercelServerlessFunctionsBot)
 ======================
 
-Telegram Bot Boilerplate based on Node.js and [Telegraf](https://github.com/telegraf/telegraf) framework. ES6/ES7 used. Easy deployment to [Zeit Now](https://zeit.co/now).
+This template  is a fork of [Telegram Bot Boilerplate](https://github.com/yakovlevyuri/telegram-bot-boilerplate) framework to be used with [Vercel's Serverless Functions](https://vercel.com/docs/v2/serverless-functions/introduction). Easily deploy to [Vercel](https://vercel.com).
 
 ## Before you start
 First rename `.env-sample` file to `.env` and fill in all necessary values.
 ```
 BOT_TOKEN="<YOUR_BOT_API_TOKEN>"
 IS_NOW="<TRUE_IF_PRODUCTION>"
-BOT_URL="<THE_URL_OF_YOUR_WEBHOOK>"
-PORT="<PORT>"
+VERCEL_URL="<THE_URL_OF_YOUR_WEBHOOK>"
+
+
 ```
 
-For deployment just create `.env.prod` with your production values. 
 
 ## Start your server
+
 ```
 yarn install
 yarn dev
 ```
 
 ## Deploy to Now
-The hardest part.
+For deployment just change `.env` with your production values. 
+
 ```
-yarn deploy
+BOT_TOKEN="<YOUR_BOT_API_TOKEN>"
+IS_NOW=TRUE
 ```
 
-Pull Requests are welcomed :)
+And add `VERCEL_URL` variable in [Environment Variables UI](https://vercel.com/blog/environment-variables-ui).
+
+You can also add all your variables in Environment Variables UI (preferred) then push to GitHub.
+
+```
+ git push
+```
+
+Pull Requests are welcomed 😉

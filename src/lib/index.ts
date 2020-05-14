@@ -1,8 +1,7 @@
-import startBot, {getWebhookCallback, launchBot} from './telegram';
+import startBot, {setWebhook} from './telegram';
 
 
 export {
 	startBot,
-	getWebhookCallback,
-launchBot,
+ setWebhook,
 };

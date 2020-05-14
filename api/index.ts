@@ -5,6 +5,7 @@ import { about, greeting } from '../src';
  import {ok} from '../src/lib/responses';
 import {
 startBot,
+setWebhook,
 } from '../src/lib';
 
 
@@ -34,6 +35,7 @@ if (!process.env.IS_NOW) {
 
 // main function
  export default async function handle(req: NowRequest, res: NowResponse) {
+await setWebhook(bot)
 
 	if (!req.body) {
 

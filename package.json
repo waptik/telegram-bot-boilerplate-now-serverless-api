@@ -1,14 +1,13 @@
 {
   "name": "telegram-bot-boilerplate-now-serverless-api",
   "version": "1.0.0",
-  "description": "Telegram Bot to test Telegram Bot Boilerplate",
+  "description": "A template for building Telegram bots with Vercel's Serverless Functions",
   "main": "src/index.js",
-  "author": "waptik",
+  "author": "Stephane Mensah",
   "homepage": "https://github.com/waptik/telegram-bot-boilerplate-now-serverless-api.git",
   "dependencies": {
     "dotenv-cli": "^2.0.1",
-    "telegraf": "^3.38.0",
-    "telegraf-inline-menu": "^4.0.1"
+    "telegraf": "^3.38.0"
   },
   "devDependencies": {
     "@now/node": "^1.6.0",

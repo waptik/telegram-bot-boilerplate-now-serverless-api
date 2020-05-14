@@ -1,39 +1,37 @@
 import {Context as TelegrafContext, Extra} from 'telegraf';
-import {ExtraReplyMessage} from 'telegraf/typings/telegram-types';
+import  {ExtraReplyMessage} from 'telegraf/typings/telegram-types';
 
-const NOW_URL = process.env.BOT_URL;
-
-const PORT = (process.env.PORT && parseInt(process.env.PORT, 10));
+const NOW_URL = process.env.VERCEL_URL;
 
 
 async function init(bot) {
-	const botInfo = await bot.telegram.getMe(bot);
+	const botInfo = await bot.telhegram.getMe(bot);
 	bot.options.username = botInfo.username;
-	console.info('Server has initialized bot username.', botInfo.username);
+	console.info('Server has initialized bot username.; ',  botInfo.username);
 	  await bot.telegram.deleteWebhook();
-  bot.startPolling();
 }
 
-export async function getWebhookCallback(bot) {
+
+export async function setWebhook(bot) {
 	const botInfo = await bot.telegram.getMe();
 	bot.options.username = botInfo.username;
-	console.info('Server has initialized bot username.', botInfo.username);
-	return bot.webhookCallback
-('/' + process.env.BOT_TOKEN);
-}
+	console.info('Server has initialized bot username using Webhook. ', botInfo.username);
 
-export function launchBot(bot) {
-	
+   const getWebhookInfo = await bot.telegram.getWebhookInfo(NOW_URL);
 
-	console.log('Server has initialized bot using launchBot() at %s and instance %s.', NOW_URL, bot.telegram.getWebhookInfo());
+	console.info('getWebhookInfo. ', getWebhookInfo);
 
 
-	return bot.launch({
-			webhook: {
-						domain: NOW_URL,
-						port: PORT
-			}
-	});
+	if(getWebhookInfo.url === "") {
+
+    await bot.telegram.setWebhook(NOW_URL);
+
+
+    console.log('set webhook', NOW_URL);
+  return;
+   }
+    console.log('webhook already defined');
+    return;
 }
 
 export function toArgs(ctx: TelegrafContext) {
