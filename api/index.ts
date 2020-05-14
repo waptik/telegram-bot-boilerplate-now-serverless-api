@@ -2,11 +2,9 @@ import {NowRequest, NowResponse} from '@now/node';
 import Telegraf from 'telegraf';
 
 import { about, greeting } from '../src';
- //import {ok} from '../src/lib/responses';
+ import {ok} from '../src/lib/responses';
 import {
 startBot,
-// getWebhookCallback,
-//launchBot
 } from '../src/lib';
 
 
@@ -19,7 +17,7 @@ const bot = new Telegraf(BOT_TOKEN);
 bot.use(Telegraf.log());
 
 bot.start((ctx) => {
-  return ctx.reply('This bot helps channel/group owners monetize their communities through self advertisement');
+  return ctx.reply('This is a test bot.');
 });
 
 bot.command('about', about())
@@ -39,14 +37,14 @@ if (!process.env.IS_NOW) {
 
 	if (!req.body) {
 
-	//	ok(res,'Nothing to see here...');
+	ok(res,'Nothing to see here...');
 		return;
 	};
  
 
 	console.log('Server has initialized bot with req.body ', req.body);
 
-		
+		// info: set webhook in order for `bot​.​handleUpdate` to work
 return​ ​bot​.​handleUpdate​(​req​.​body​,​ ​res​)​;​
 
 }
