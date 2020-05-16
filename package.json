@@ -17,12 +17,13 @@
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
     "ts-node": "^8.3.0",
+    "tsc-watch": "^4.2.5",
     "typescript": "^3.8.2"
   },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\" --onFailure \"echo Beep! Compilation Failed\" --compiler $(which tsc)",
+    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\" --onFailure \"echo Beep! Compilation Failed\"",
     "prettier": "prettier --single-quote --trailing-comma all --write 'src/**/*.ts'"
   }
 }
