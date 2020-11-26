@@ -1,7 +1,10 @@
 {
- 	"extends": "@sindresorhus/tsconfig",
- 	"include": [ 		"api" 	], 	"compilerOptions": {
- 		"outDir": "dist",
- 		"strict":false, 		"strictNullChecks":false, 		"sourceMap": true
- 	}
- }
+	"extends": "@sindresorhus/tsconfig",
+	"include": ["api"],
+	"compilerOptions": {
+		"outDir": "public",
+		"strict": false,
+		"strictNullChecks": false,
+		"sourceMap": true
+	}
+}
